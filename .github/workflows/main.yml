@@ -18,10 +18,16 @@ on:
         description: 'Test scenario tags'
     repository_dispatch:
       type: [opened, deleted]
+    check_run:
+      types: [rerequested, requested_action]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+  prod-check:
+    if: ${{github.ref == 'refs/heads/main'}}
+      runs-on: ubuntu-latest
 
   steps:
     - uses: actions/checkout@v3
