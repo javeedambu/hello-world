@@ -9,6 +9,15 @@ on:
   pull_request:
     branches:["main"]
   workflow_dispatch:
+    inputs:
+      loglevel:
+        description: 'Log Level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+    repository_dispatch:
+      type: [opened, deleted]
 
 jobs:
   build:
